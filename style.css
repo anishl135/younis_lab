@@ -1,0 +1,619 @@
+/* ==========================================================================
+   HIGH-END ACADEMIC LOGBOOK & EDITORIAL DESIGN ARCHITECTURE
+   Completely detached from generic modern template frameworks.
+   Inspired by high-density scientific journals and asymmetric print design.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Pure Ink-on-Paper High Contrast Color Framework */
+    --paper-base: #faf9f5;          /* Warm raw linen unbleached paper stock */
+    --ink-solid: #0d0f12;           /* Deep dense organic carbon black ink */
+    --ink-subtle: #565e67;          /* Slate mineral wash for peripheral data */
+    
+    /* Strategic Precision Chromatic Visual Accents */
+    --heritage-crimson: #a6192e;    /* Rich raw authentic Carnegie Crimson */
+    --biochemical-rust: #c85a17;    /* Earthy high-contrast functional molecular tone */
+    --rna-highlight-bg: #e2ede8;    /* Muted wash representing biological fluid matrices */
+    --border-stroke: #121417;       /* Hard lines for deliberate layout structuring */
+    
+    /* Typography Engine Selection */
+    --font-editorial: 'Fraunces', Georgia, serif;
+    --font-structural: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-code-raw: 'Courier Prime', monospace;
+}
+
+/* Base Body Framework Overrides */
+body {
+    background-color: #f2f1ec; /* Ground framing tone behind the paper stock */
+    color: var(--ink-solid);
+    font-family: var(--font-structural);
+    margin: 0;
+    padding: 25px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Asymmetric Structural Enclosure Box */
+.site-outer-border {
+    background-color: var(--paper-base);
+    max-width: 1550px;
+    margin: 0 auto;
+    border: 3px solid var(--border-stroke);
+    box-shadow: 12px 12px 0px rgba(18, 20, 23, 0.06);
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Helper Monospace & Font Rules */
+.font-mono {
+    font-family: var(--font-code-raw);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+/* Lab Journal Header Architecture */
+.journal-header {
+    border-bottom: 3px double var(--border-stroke);
+    padding-bottom: 40px;
+    margin-bottom: 50px;
+}
+
+.header-top-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--ink-subtle);
+    border-bottom: 1px solid rgba(18, 20, 23, 0.1);
+    padding-bottom: 12px;
+    margin-bottom: 30px;
+}
+
+.brand-block {
+    margin-bottom: 45px;
+}
+
+.main-title {
+    font-family: var(--font-editorial);
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -2.5px;
+    margin: 0 0 15px 0;
+    text-transform: lowercase;
+}
+
+.main-title .title-light {
+    font-weight: 600;
+    color: var(--heritage-crimson);
+    font-style: italic;
+}
+
+.discipline-tag {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--ink-subtle);
+    margin: 0;
+}
+
+/* Navigation Row */
+.journal-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.nav-node {
+    font-family: var(--font-code-raw);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-solid);
+    text-decoration: none;
+    padding: 4px 12px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-node:hover {
+    color: var(--heritage-crimson);
+    border: 1px dashed var(--heritage-crimson);
+    background-color: rgba(166, 25, 46, 0.03);
+}
+
+/* Structural Grid Split Framework */
+.journal-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.6fr;
+    gap: 70px;
+    align-items: start;
+}
+
+/* Sidebar Information Block styling */
+.journal-sidebar {
+    position: sticky;
+    top: 40px;
+    border-right: 1px solid rgba(18, 20, 23, 0.15);
+    padding-right: 45px;
+}
+
+.sidebar-subheading {
+    font-family: var(--font-code-raw);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--ink-solid);
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border-stroke);
+}
+
+/* Multi-Item Bulletin Stack Typography & Spacing */
+.bulletin-board {
+    margin-bottom: 45px;
+}
+
+.news-entry {
+    padding: 18px 0;
+    border-bottom: 1px dashed rgba(18, 20, 23, 0.15);
+}
+
+.news-entry:last-of-type {
+    border-bottom: none;
+    padding-bottom: 5px;
+}
+
+.news-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.news-date {
+    color: var(--ink-subtle);
+    font-weight: bold;
+}
+
+.news-badge {
+    font-size: 9.5px;
+    font-weight: 700;
+    background-color: rgba(18, 20, 23, 0.06);
+    padding: 1px 6px;
+    border-radius: 1px;
+    color: var(--ink-solid);
+}
+
+.news-badge.color-crimson {
+    background-color: rgba(166, 25, 46, 0.08);
+    color: var(--heritage-crimson);
+}
+
+.news-badge.color-rust {
+    background-color: rgba(200, 90, 23, 0.08);
+    color: var(--biochemical-rust);
+}
+
+.news-headline {
+    font-family: var(--font-editorial);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 6px 0;
+    color: var(--ink-solid);
+}
+
+.news-summary {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-subtle);
+    margin: 0 0 10px 0;
+}
+
+.news-more-link {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--heritage-crimson);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.news-more-link:hover {
+    color: var(--ink-solid);
+    border-bottom: 1px solid var(--ink-solid);
+}
+
+/* Raw Data Lists Layout */
+.raw-data-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 50px 0;
+}
+
+.raw-data-list li {
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(18, 20, 23, 0.08);
+    display: flex;
+    align-items: flex-start;
+}
+
+.index-num {
+    font-family: var(--font-code-raw);
+    color: var(--biochemical-rust);
+    font-weight: bold;
+    width: 50px;
+    flex-shrink: 0;
+}
+
+.coordinates-block {
+    font-size: 13px;
+    color: var(--ink-subtle);
+    line-height: 1.6;
+}
+
+.contact-line {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-code-raw);
+    color: var(--ink-solid);
+    font-weight: bold;
+}
+
+/* Content Area Component Styling */
+.stream-section {
+    margin-bottom: 90px;
+    padding-bottom: 40px;
+}
+
+.section-marker {
+    font-family: var(--font-code-raw);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--biochemical-rust);
+    margin-bottom: 15px;
+}
+
+.section-display-title {
+    font-family: var(--font-editorial);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 0 0 35px 0;
+}
+
+/* Rich Typographic Contrast Selectors */
+.body-text-editorial {
+    font-family: var(--font-editorial);
+    font-size: 21px;
+    line-height: 1.6;
+    color: #1e2227;
+    margin: 0 0 25px 0;
+}
+
+.body-text-editorial.lead-text {
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* Custom In-text Highlighters */
+.marker-highlight {
+    background-color: var(--rna-highlight-bg);
+    padding: 1px 8px;
+    font-weight: 500;
+    border-left: 3px solid var(--biochemical-rust);
+}
+
+.rna-token {
+    font-family: var(--font-code-raw);
+    font-weight: 700;
+    background-color: rgba(18, 20, 23, 0.05);
+    color: var(--ink-solid);
+    padding: 2px 6px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+/* Custom Image Frame Architecture */
+.rna-image-canvas {
+    border: 1px solid var(--border-stroke);
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 45px 0;
+}
+
+.image-wrapper {
+    background-color: #eae7e0;
+    min-height: 300px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rna-native-asset {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fallback Design Layout Rules when image path is empty */
+.has-fallback .rna-native-asset {
+    display: none;
+}
+
+.canvas-fallback-blueprint {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.has-fallback .canvas-fallback-blueprint {
+    display: flex;
+}
+
+.blueprint-line {
+    width: 80px;
+    height: 4px;
+    background-color: var(--biochemical-rust);
+    margin-bottom: 20px;
+}
+
+.blueprint-label {
+    font-family: var(--font-code-raw);
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--ink-subtle);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Captioning elements */
+.canvas-caption-block {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    border-top: 1px solid rgba(18, 20, 23, 0.1);
+    padding-top: 15px;
+}
+
+.caption-num {
+    font-family: var(--font-code-raw);
+    font-weight: 700;
+    font-size: 12px;
+    background: var(--border-stroke);
+    color: var(--paper-base);
+    padding: 2px 6px;
+    height: max-content;
+}
+
+.caption-text {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-subtle);
+    margin: 0;
+}
+
+/* Inside Layout Subgrids */
+.asymmetric-split-insight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 45px;
+}
+
+.insight-title {
+    font-family: var(--font-editorial);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+}
+
+.insight-body {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-subtle);
+    margin: 0;
+}
+
+.dark-accent-text {
+    color: var(--heritage-crimson);
+    font-weight: 700;
+}
+
+/* Custom Personnel Modules */
+.profile-node {
+    border-top: 1px dashed var(--border-stroke);
+    padding: 35px 0;
+}
+
+.profile-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-family: var(--font-editorial);
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile-status-badge {
+    font-family: var(--font-code-raw);
+    font-size: 11px;
+    font-weight: 700;
+    background-color: #eeebe4;
+    padding: 3px 10px;
+    border-radius: 1px;
+}
+
+.honor-badge {
+    background-color: var(--heritage-crimson);
+    color: var(--paper-base);
+}
+
+.profile-description {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #2c3035;
+    margin: 0;
+}
+
+/* Light opacity tint for filler slots to emphasize editability */
+.placeholder-node {
+    border-top: 1px dashed rgba(18, 20, 23, 0.3);
+}
+
+.placeholder-node .profile-name {
+    color: var(--ink-subtle);
+}
+
+/* High Contrast Journal Record Matrix */
+.logbook-table-wrapper {
+    margin-top: 30px;
+    border-top: 3px solid var(--border-stroke);
+}
+
+.logbook-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.logbook-table th {
+    font-family: var(--font-code-raw);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: left;
+    padding: 15px 0;
+    color: var(--ink-subtle);
+    border-bottom: 1px solid var(--border-stroke);
+}
+
+.logbook-table td {
+    padding: 25px 0;
+    border-bottom: 1px dashed rgba(18, 20, 23, 0.15);
+    vertical-align: top;
+}
+
+.log-year {
+    font-family: var(--font-editorial);
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--biochemical-rust);
+    width: 100px;
+}
+
+.entry-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink-solid);
+}
+
+.entry-meta {
+    font-size: 13.5px;
+    color: var(--ink-subtle);
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Asymmetric Editorial Footer elements */
+.journal-footer {
+    margin-top: 60px;
+    border-top: 3px double var(--border-stroke);
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    font-family: var(--font-code-raw);
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-legal {
+    font-size: 12px;
+    color: var(--ink-subtle);
+    max-width: 500px;
+    margin: 0;
+}
+
+.footer-links-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.footer-link {
+    font-family: var(--font-code-raw);
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--ink-solid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-solid);
+}
+
+/* Responsive Layout Tuning overrides */
+@media (max-width: 1024px) {
+    .journal-body-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .journal-sidebar {
+        position: relative;
+        top: 0;
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px dashed var(--border-stroke);
+        padding-bottom: 40px;
+    }
+    .site-outer-border {
+        padding: 30px;
+    }
+    .main-title {
+        font-size: 54px;
+    }
+}
+
+@media (max-width: 650px) {
+    .asymmetric-split-insight {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .profile-meta-row {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    .journal-footer {
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    .footer-links-group {
+        align-items: flex-start;
+    }
+}

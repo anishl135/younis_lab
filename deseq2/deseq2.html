@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RNA-Seq Differential Expression Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --panel-bg: #ffffff;
+            --text-color: #2c3e50;
+            --primary-color: #34495e;
+            --accent-color: #3498db;
+            --border-color: #dcdde1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        select {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        select:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        select option {
+            background-color: white;
+            color: var(--text-color);
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+            height: calc(100vh - 75px);
+            box-sizing: border-box;
+        }
+
+        .plot-panel {
+            flex: 1;
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .panel-header {
+            background-color: #fafbfc;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #57606a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: white;
+        }
+
+        .empty-state {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #8c939d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PyDESeq2 Interactive Analytics Center</h1>
+        <div class="controls">
+            <div class="control-group">
+                <label for="comparison-select">Comparison:</label>
+                <select id="comparison-select" onchange="updatePlots()">
+                    <option value="mcf7_mcf10a">MCF7 vs MCF10A</option>
+                    <option value="mdamb231_mcf10a">MDAMB231 vs MCF10A</option>
+                    <option value="mdamb231_mcf7">MDAMB231 vs MCF7</option>
+                    <option value="T47D_mcf10a">T47D vs MCF10A</option>
+                    <option value="T47D_mcf7">T47D vs MCF7</option>
+                    <option value="T47D_mdamb231">T47D vs MDAMB231</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="plot-panel">
+            <div class="panel-header">
+                <span>Volcano Plot (Significance Profile)</span>
+            </div>
+            <iframe id="volcano-frame" src=""></iframe>
+            <div id="volcano-empty" class="empty-state" style="display:none;">Loading Plot Data...</div>
+        </div>
+
+        <div class="plot-panel">
+            <div class="panel-header">
+                <span>MA Plot (Expression Log-Ratios)</span>
+            </div>
+            <iframe id="ma-frame" src=""></iframe>
+            <div id="ma-empty" class="empty-state" style="display:none;">Loading Plot Data...</div>
+        </div>
+    </div>
+
+    <script>
+        function updatePlots() {
+            const selector = document.getElementById('comparison-select');
+            const chosenComparison = selector.value;
+
+            const volcanoFrame = document.getElementById('volcano-frame');
+            const maFrame = document.getElementById('ma-frame');
+
+            // Construct expected file paths locally in same folder
+            const volcanoPath = `${chosenComparison}_volcano_plot.html`;
+            const maPath = `${chosenComparison}_ma_plot.html`;
+
+            // Reload frames
+            volcanoFrame.src = volcanoPath;
+            maFrame.src = maPath;
+        }
+
+        // Initialize display on window mount
+        window.onload = function() {
+            updatePlots();
+        };
+    </script>
+</body>
+</html>
