@@ -1,0 +1,890 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"><title>Strict Twintron Discovery Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <style>
+            body { font-family: -apple-system, sans-serif; padding: 25px; background-color: #fcfcfc; }
+            h1 { color: #2c3e50; font-weight: 700; }
+            .metadata { color: #7f8c8d; margin-bottom: 25px; font-size: 0.9em; }
+            td.details-control { text-align: center; color: #2980b9; font-weight: bold; cursor: pointer; background: #eef2f7; }
+            tr.shown td.details-control { background: #e74c3c; color: white; }
+            .ucsc-container { padding: 15px; background: #f8f9fa; border-left: 5px solid #2980b9; }
+            .ucsc-iframe { width: 100%; height: 550px; border: 1px solid #ccc; background: white; }
+        </style>
+        <script>
+            function formatChildRow(coords) {
+                var cleanCoords = coords.trim();
+                var ucscUrl = "https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=" + encodeURIComponent(cleanCoords);
+                return  '<div class="ucsc-container">' + 
+                        '  <div style="margin-bottom:10px; font-weight:bold; color:#34495e;">Live Session Viewer Locus: ' + cleanCoords + '</div>' +
+                        '  <iframe class="ucsc-iframe" src="' + ucscUrl + '"></iframe>' +
+                        '</div>';
+            }
+            $(document).ready(function() {
+                var table = $('#twintronTable').DataTable({
+                    "order": [[ 3, "desc" ]], 
+                    "pageLength": 25,
+                    "columnDefs": [
+                        { "className": "details-control", "targets": 0 }, 
+                        { "orderable": false, "targets": 0 }               
+                    ]
+                });
+                $('#twintronTable tbody').on('click', 'td.details-control', function () {
+                    var tr = $(this).closest('tr');
+                    var row = table.row(tr);
+                    if (row.child.isShown()) {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                        $(this).html("🔍 Click");
+                    } else {
+                        var coords = row.data()[2]; 
+                        row.child(formatChildRow(coords)).show();
+                        tr.addClass('shown');
+                        $(this).html("❌ Close");
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>U12 Twintron Discovery Dashboard (Strictly Verified High-Confidence Loci)</h1>
+        <div class="metadata">Generated on 2026-07-08 13:35:10</div>
+        <table border="1" class="dataframe display compact cell-border" id="twintronTable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Inspect</th>
+      <th>Gene_Name</th>
+      <th>UCSC_Coordinates</th>
+      <th>Confidence_Score</th>
+      <th>Original_Motif</th>
+      <th>Cryptic_Motif</th>
+      <th>Drop_Magnitude</th>
+      <th>Junc_Reads_Ctrl</th>
+      <th>Junc_Reads_50uM</th>
+      <th>Retained_Cov_Ctrl</th>
+      <th>Retained_Cov_50uM</th>
+      <th>Strand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🔍 Click</td>
+      <td>EIF4G3</td>
+      <td>chr1:21089113-21176274</td>
+      <td>75.00</td>
+      <td>GT-AG</td>
+      <td>TT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.23</td>
+      <td>64.66</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>GPN1</td>
+      <td>chr2:27630966-27631933</td>
+      <td>75.00</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.97</td>
+      <td>46.83</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>CEP170P1</td>
+      <td>chr4:118467568-118478766</td>
+      <td>75.00</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.55</td>
+      <td>7.85</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>UBE2H</td>
+      <td>chr7:129880871-129952602</td>
+      <td>75.00</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.12</td>
+      <td>13.39</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>UBE2H</td>
+      <td>chr7:129949002-129952602</td>
+      <td>75.00</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.12</td>
+      <td>13.39</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TAF2</td>
+      <td>chr8:119788804-119789691</td>
+      <td>75.00</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>21.78</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>STX6</td>
+      <td>chr1:181002600-181005393</td>
+      <td>75.00</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.16</td>
+      <td>52.51</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>E2F5</td>
+      <td>chr8:85203155-85206276</td>
+      <td>75.00</td>
+      <td>AT-AC</td>
+      <td>GA-AC</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.42</td>
+      <td>7.20</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>NLK</td>
+      <td>chr17:28132575-28161259</td>
+      <td>73.97</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.948</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.17</td>
+      <td>18.01</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>CRNKL1</td>
+      <td>chr20:20045386-20047864</td>
+      <td>73.57</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>0.929</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.86</td>
+      <td>12.92</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>FAM92A</td>
+      <td>chr8:93704910-93707301</td>
+      <td>73.21</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.910</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.95</td>
+      <td>11.71</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>FAM92A</td>
+      <td>chr8:93704910-93708110</td>
+      <td>73.21</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.910</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.95</td>
+      <td>11.71</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>CRTC2</td>
+      <td>chr1:153954216-153954972</td>
+      <td>73.04</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>0.902</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5.63</td>
+      <td>75.71</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>SNRPE</td>
+      <td>chr1:203861613-203862295</td>
+      <td>72.79</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.890</td>
+      <td>0</td>
+      <td>0</td>
+      <td>47.83</td>
+      <td>213.93</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>WDFY2</td>
+      <td>chr13:51719248-51727777</td>
+      <td>72.45</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.872</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.17</td>
+      <td>4.40</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>SRPK2</td>
+      <td>chr7:105160513-105167476</td>
+      <td>71.87</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.844</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.18</td>
+      <td>8.12</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>VPS25</td>
+      <td>chr17:42773778-42774745</td>
+      <td>71.68</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.919</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5.22</td>
+      <td>30.14</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>IP6K2</td>
+      <td>chr3:48689613-48691406</td>
+      <td>71.64</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.832</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.00</td>
+      <td>112.71</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>SMYD2</td>
+      <td>chr1:214330970-214332117</td>
+      <td>71.60</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>0.830</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.46</td>
+      <td>21.44</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>BAZ1B</td>
+      <td>chr7:73510752-73521926</td>
+      <td>71.57</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.829</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.79</td>
+      <td>11.21</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TMEM33</td>
+      <td>chr4:41939283-41943846</td>
+      <td>71.37</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.819</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.13</td>
+      <td>18.11</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>SFI1</td>
+      <td>chr22:31575292-31578481</td>
+      <td>70.88</td>
+      <td>GT-AG</td>
+      <td>CT-AG</td>
+      <td>0.794</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.51</td>
+      <td>20.94</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>PTEN</td>
+      <td>chr10:87864448-87894124</td>
+      <td>70.53</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.97</td>
+      <td>5.42</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>RFX7</td>
+      <td>chr15:56102153-56103653</td>
+      <td>70.38</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>0.769</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.15</td>
+      <td>18.20</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>FRA10AC1</td>
+      <td>chr10:93694837-93698235</td>
+      <td>70.20</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.39</td>
+      <td>6.52</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>PCTP</td>
+      <td>chr17:55771085-55773823</td>
+      <td>70.20</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.760</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>12.38</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TNPO1</td>
+      <td>chr5:72848398-72851304</td>
+      <td>69.66</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.733</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.47</td>
+      <td>49.01</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TNPO1</td>
+      <td>chr5:72848398-72851343</td>
+      <td>69.66</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.733</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.47</td>
+      <td>49.01</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TNPO1</td>
+      <td>chr5:72848398-72851337</td>
+      <td>69.66</td>
+      <td>GT-TG</td>
+      <td>GT-TG</td>
+      <td>0.733</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.47</td>
+      <td>49.01</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>GTF2H3</td>
+      <td>chr12:123650956-123652623</td>
+      <td>69.58</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.729</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.14</td>
+      <td>33.42</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>GTF2H3</td>
+      <td>chr12:123650956-123652631</td>
+      <td>69.58</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.729</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.14</td>
+      <td>33.42</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>SSR2</td>
+      <td>chr1:156014969-156018369</td>
+      <td>69.53</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.991</td>
+      <td>0</td>
+      <td>0</td>
+      <td>65.05</td>
+      <td>205.93</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>SSR2</td>
+      <td>chr1:156014973-156018369</td>
+      <td>69.53</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.991</td>
+      <td>0</td>
+      <td>0</td>
+      <td>65.05</td>
+      <td>205.93</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>PCNX3</td>
+      <td>chr11:65628603-65628918</td>
+      <td>69.31</td>
+      <td>GT-AG</td>
+      <td>CT-AG</td>
+      <td>0.716</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.00</td>
+      <td>19.67</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>MSH3</td>
+      <td>chr5:80672758-80675082</td>
+      <td>69.18</td>
+      <td>AT-AA</td>
+      <td>GT-AA</td>
+      <td>0.709</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.98</td>
+      <td>13.29</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>LSM5</td>
+      <td>chr7:32488552-32489348</td>
+      <td>69.14</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.918</td>
+      <td>0</td>
+      <td>0</td>
+      <td>10.20</td>
+      <td>35.87</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>CTNNBL1</td>
+      <td>chr20:37746507-37757658</td>
+      <td>69.02</td>
+      <td>AT-AC</td>
+      <td>GG-AC</td>
+      <td>0.701</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.31</td>
+      <td>6.56</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TCEA1</td>
+      <td>chr8:53984417-53987068</td>
+      <td>68.35</td>
+      <td>AT-AC</td>
+      <td>CA-AC</td>
+      <td>0.787</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.69</td>
+      <td>14.62</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>ICE1</td>
+      <td>chr5:5437014-5439994</td>
+      <td>68.14</td>
+      <td>AT-AC</td>
+      <td>CA-AC</td>
+      <td>0.806</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.16</td>
+      <td>38.91</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>RABL2A</td>
+      <td>chr2:113632844-113634256</td>
+      <td>68.12</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.22</td>
+      <td>5.45</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>RABL2A</td>
+      <td>chr2:113632844-113634252</td>
+      <td>68.12</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.22</td>
+      <td>5.45</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>KANSL2</td>
+      <td>chr12:48660519-48667792</td>
+      <td>67.98</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.875</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.34</td>
+      <td>26.53</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>CNIH4</td>
+      <td>chr1:224356893-224360594</td>
+      <td>67.88</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.734</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.99</td>
+      <td>23.08</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TCTN3</td>
+      <td>chr10:95683095-95683621</td>
+      <td>65.91</td>
+      <td>GT-GG</td>
+      <td>GT-GG</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.94</td>
+      <td>6.73</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>HNRNPLL</td>
+      <td>chr2:38581880-38583940</td>
+      <td>65.27</td>
+      <td>AT-AC</td>
+      <td>TT-AC</td>
+      <td>0.769</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.49</td>
+      <td>10.02</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>HNRNPLL</td>
+      <td>chr2:38582068-38583940</td>
+      <td>65.27</td>
+      <td>AT-AT</td>
+      <td>TT-AT</td>
+      <td>0.769</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.49</td>
+      <td>10.02</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>MAGT1</td>
+      <td>chrX:77841220-77854000</td>
+      <td>64.77</td>
+      <td>GT-AG</td>
+      <td>GA-AG</td>
+      <td>0.800</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>2.00</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>ZDHHC13</td>
+      <td>chr11:19158940-19163402</td>
+      <td>64.76</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>0.900</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.97</td>
+      <td>7.13</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>ZDHHC9</td>
+      <td>chrX:129812720-129813776</td>
+      <td>64.41</td>
+      <td>AT-AC</td>
+      <td>GT-AC</td>
+      <td>1.000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.81</td>
+      <td>13.25</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>PROX1</td>
+      <td>chr1:213998160-214005264</td>
+      <td>64.10</td>
+      <td>AT-AC</td>
+      <td>AG-AC</td>
+      <td>0.729</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>2.11</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>CUL1</td>
+      <td>chr7:148730162-148754075</td>
+      <td>62.46</td>
+      <td>GT-AG</td>
+      <td>TA-AG</td>
+      <td>0.900</td>
+      <td>0</td>
+      <td>0</td>
+      <td>9.47</td>
+      <td>24.72</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>STX8</td>
+      <td>chr17:9545182-9557533</td>
+      <td>61.24</td>
+      <td>GT-AG</td>
+      <td>TT-AG</td>
+      <td>0.879</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.28</td>
+      <td>6.77</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>AP4S1</td>
+      <td>chr14:31080484-31093006</td>
+      <td>60.99</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.878</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.92</td>
+      <td>8.18</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>ATXN10</td>
+      <td>chr22:45806922-45843090</td>
+      <td>60.62</td>
+      <td>GT-AG</td>
+      <td>GA-AG</td>
+      <td>0.812</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.16</td>
+      <td>1.98</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>GBE1</td>
+      <td>chr3:81499127-81535294</td>
+      <td>60.36</td>
+      <td>AT-AC</td>
+      <td>TT-AC</td>
+      <td>0.838</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.62</td>
+      <td>3.85</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>C15orf41</td>
+      <td>chr15:36692075-36697422</td>
+      <td>60.10</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.900</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.35</td>
+      <td>1.98</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>ACTL6A</td>
+      <td>chr3:179574367-179575502</td>
+      <td>55.17</td>
+      <td>GT-AG</td>
+      <td>GT-AG</td>
+      <td>0.700</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17.85</td>
+      <td>38.79</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>🔍 Click</td>
+      <td>TBCK</td>
+      <td>chr4:106095541-106116302</td>
+      <td>47.01</td>
+      <td>GT-AG</td>
+      <td>AT-AG</td>
+      <td>0.844</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.06</td>
+      <td>0.67</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+    </body>
+    </html>
+    
